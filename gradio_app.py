@@ -340,10 +340,14 @@ if __name__ == '__main__':
     parser.add_argument('--host', type=str, default='0.0.0.0')
     parser.add_argument('--cache-path', type=str, default='gradio_cache')
     parser.add_argument('--enable_t23d', action='store_true')
-    parser.add_argument('--profile', type=str, default="3")
+    parser.add_argument('--profile', type=str, default="5")
     parser.add_argument('--verbose', type=str, default="1")
-
+    parser.add_argument('--ngrok_auth', type, default='6942069420')
     args = parser.parse_args()
+
+    ngrok.set_auth_token(args.ngrok_auth)
+
+    global public_url = ngrok.connect(args.port)
 
     SAVE_DIR = args.cache_path
     os.makedirs(SAVE_DIR, exist_ok=True)
@@ -417,6 +421,8 @@ if __name__ == '__main__':
     static_dir.mkdir(parents=True, exist_ok=True)
     app.mount("/static", StaticFiles(directory=static_dir, html=True), name="static")
 
+    print("public url: ", public_url)
+    
     demo = build_app()
     app = gr.mount_gradio_app(app, demo, path="/")
     uvicorn.run(app, host=args.host, port=args.port)
