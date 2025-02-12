@@ -348,7 +348,7 @@ if __name__ == '__main__':
 
     ngrok.set_auth_token(args.ngrok_auth)
 
-    global public_url = ngrok.connect(args.port)
+    public_url = ngrok.connect(args.port)
 
     SAVE_DIR = args.cache_path
     os.makedirs(SAVE_DIR, exist_ok=True)
