@@ -10,6 +10,7 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from mmgp import offload
+from pyngrok import ngrok
 
 def get_example_img_list():
     print('Loading example img list ...')
