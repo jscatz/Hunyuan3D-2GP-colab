@@ -343,7 +343,7 @@ if __name__ == '__main__':
     parser.add_argument('--enable_t23d', action='store_true')
     parser.add_argument('--profile', type=str, default="5")
     parser.add_argument('--verbose', type=str, default="1")
-    parser.add_argument('--ngrok_auth', type, default='6942069420')
+    parser.add_argument('--ngrok_auth', type=str, default='6942069420')
     args = parser.parse_args()
 
     ngrok.set_auth_token(args.ngrok_auth)
